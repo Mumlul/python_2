@@ -1,0 +1,91 @@
+# 1
+import random
+
+def guess_the_number():
+    number_to_guess = random.randint(0, 100)
+    attempts = 0
+    guessed = False
+
+    print("Я загадал число от 0 до 100. Попробуй угадать!")
+
+    while not guessed:
+        user_guess = int(input("Введите ваше число: "))
+        attempts += 1
+
+        if user_guess < number_to_guess:
+            print("Загаданное число больше.")
+        elif user_guess > number_to_guess:
+            print("Загаданное число меньше.")
+        else:
+            guessed = True
+            print(f"Поздравляю! Вы угадали число {number_to_guess} за {attempts} попыток.")
+
+guess_the_number()
+# 2
+def group_characters(input_string):
+    characters = input_string.split()
+    grouped = {}
+
+    for char in characters:
+        if char in grouped:
+            grouped[char].append(char)
+        else:
+            grouped[char] = [char]
+
+    return list(grouped.values())
+
+input_string = input("Введите строку символов, разделенных пробелами: ")
+result = group_characters(input_string)
+print(result)
+
+#21
+import random
+
+def card_game():
+    # Определяем карты и их значения
+    cards = {
+        'шестёрка': 6,
+        'семёрка': 7,
+        'восьмёрка': 8,
+        'девятка': 9,
+        'десятка': 10,
+        'валет': 2,
+        'дама': 3,
+        'король': 4,
+        'туз': 11
+    }
+
+    # Создаем колоду и перемешиваем её
+    deck = list(cards.items())
+    random.shuffle(deck)
+
+    user_score = 0
+
+    print("Добро пожаловать в игру с картами!")
+    
+    while True:
+        user_choice = input("Хотите взять карту? (y/n): ").strip().lower()
+        
+        if user_choice == 'n':
+            print(f"Вы набрали {user_score} очков. Спасибо за игру!")
+            break
+        elif user_choice == 'y':
+            # Берем последнюю карту из колоды
+            card, value = deck.pop()
+            user_score += value
+            print(f"Вы взяли карту: {card} (достоинство: {value})")
+            
+            if user_score > 21:
+                print(f"Вы проиграли! У вас {user_score} очков.")
+                break
+            elif user_score == 21:
+                print("Поздравляю! Вы выиграли с 21 очком!")
+                break
+            else:
+                print(f"У вас сейчас {user_score} очков.")
+        else:
+            print("Пожалуйста, введите 'y' или 'n'.")
+
+    print("До свидания!")
+
+card_game()
